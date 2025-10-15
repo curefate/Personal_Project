@@ -1,5 +1,25 @@
 {
   "dependencies": {
+    "com.unity.2d.tilemap": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.tilemap": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0"
+      }
+    },
+    "com.unity.2d.tilemap.extras": {
+      "version": "4.1.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.tilemap": "1.0.0",
+        "com.unity.modules.tilemap": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.8",
       "depth": 0,
@@ -202,6 +222,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "se.su.dsv.extralitylab.unity": {
+      "version": "https://gitea.dsv.su.se/ExtralityLab/se.su.dsv.extralitylab.unity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "557ad3216715cc62477041bdf5c10a62fc9b2a6a"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
