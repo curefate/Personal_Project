@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : BattleBase
 {
     [SerializeField]
     private GameObject CurrentTarget;
@@ -21,6 +21,15 @@ public class Enemy : MonoBehaviour
         if (CurrentTarget != null && agent != null)
         {
             agent.SetDestination(CurrentTarget.transform.position);
+        }
+    }
+
+    public override void TakeDamage(DamageMessage msg)
+    {
+        Health -= msg.DamageAmount;
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

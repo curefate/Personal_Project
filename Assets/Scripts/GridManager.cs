@@ -99,7 +99,7 @@ public class GridManager : MonoBehaviour
         if (!brick.IsGrid) return;
         if (_grid.ContainsKey(brick.Coordinate))
         {
-            Debug.LogWarning($"Grid position {brick.Coordinate} is already occupied.");
+            Debug.LogWarning($"Grid position {brick.Coordinate} is already occupied.\nWorld Position: {brick.transform.position}");
             return;
         }
         _grid[brick.Coordinate] = brick;

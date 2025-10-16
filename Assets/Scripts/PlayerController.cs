@@ -1,45 +1,93 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : BattleBase
 {
     private CharacterController _controller;
     private Camera _camera;
+    private GridManager _gridManager;
+    private MeshRenderer _playerMesh;
 
+    // Control
+    public Transform RespawnPoint;
     public float MoveSpeed = 5f;
     public float SprintSpeed = 8f;
     public float JumpHeight = 6f;
     public float MouseSensitivity = .8f;
-
+    public Vector3 LastGroundedPosition { get; private set; }
     private float _gravityMultiplier = 1.2f;
     private float _cameraAngleLimit = 60f;
     private float _verticalVelocity = 0f;
     private Vector3 _horizontalVelocity = Vector3.zero;
 
+    // UI & Tower Set
     public GameObject ShopUI;
     // public ParticleSystem SetTrapEffect;
-    private bool _isMenuOpen = false;
     public GameObject SelectedTower;
-    private GridManager _gridManager;
     public int Gold;
-
+    public int InitialGold = 100;
     public List<GameObject> Towers = new();
+    private float _goldTimer = 0f;
+    private bool _isMenuOpen = false;
+
+    // Battle
+    public GameObject BulletPrefab;
+    public TextMeshProUGUI RespawnTimerText;
+    public Camera ObserverCamera;
+    public int MaxHp = 100;
+    public float AttackCooldown = 0.5f;
+    public bool IsDead { get; private set; } = false;
+    private float _attackTimer = 0f;
+    public float RespawnTime = 10f;
+    private float _recoverTimer = 0f;
+    private float _respawnTimer = 0f;
 
     void Start()
     {
+        transform.position = RespawnPoint.position;
+
         _controller = GetComponent<CharacterController>();
         _camera = Camera.main;
         _gridManager = FindFirstObjectByType<GridManager>();
+        _playerMesh = GetComponent<MeshRenderer>();
 
         ShopUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        RespawnTimerText.gameObject.SetActive(false);
+        ObserverCamera.gameObject.SetActive(false);
 
-        Gold = 100;
+        Gold = InitialGold;
+        Health = MaxHp;
     }
 
     void Update()
     {
+        // Respawn logic
+        if (IsDead)
+        {
+            RespawnTimerText.gameObject.SetActive(true);
+            RespawnTimerText.text = $"Respawning in {Mathf.Ceil(RespawnTime - _respawnTimer)}s";
+            ObserverCamera.gameObject.SetActive(true);
+            _respawnTimer += Time.deltaTime;
+            if (_respawnTimer >= RespawnTime)
+            {
+                IsDead = false;
+                Health = MaxHp;
+                ResetVelocity();
+                _controller.enabled = false;
+                transform.position = RespawnPoint.position;
+                _controller.enabled = true;
+                _playerMesh.enabled = true;
+                RespawnTimerText.gameObject.SetActive(false);
+                ObserverCamera.gameObject.SetActive(false);
+                _respawnTimer = 0f;
+            }
+            return;
+        }
+
+        // Control logic
         if (!_isMenuOpen)
         {
             HandleMovement();
@@ -47,6 +95,25 @@ public class PlayerController : MonoBehaviour
             HandleAttack();
         }
         HandleShopAndTower();
+
+        // gold increment
+        _goldTimer += Time.deltaTime;
+        if (_goldTimer >= 1f)
+        {
+            Gold += 1;
+            _goldTimer = 0f;
+        }
+
+        // health recover
+        if (Health < MaxHp)
+        {
+            _recoverTimer += Time.deltaTime;
+            if (_recoverTimer >= 5f)
+            {
+                Health += 3;
+                _recoverTimer = 0f;
+            }
+        }
     }
 
     private void HandleMovement()
@@ -96,6 +163,12 @@ public class PlayerController : MonoBehaviour
 
         // apply
         _controller.Move(finalVelocity * Time.deltaTime);
+        _camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, Input.GetKey(KeyCode.LeftShift) ? 70f : 60f, 5f * Time.deltaTime);
+
+        if (_controller.isGrounded)
+        {
+            LastGroundedPosition = transform.position;
+        }
     }
 
     private void HandleRotation()
@@ -188,5 +261,27 @@ public class PlayerController : MonoBehaviour
         ShopUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public override void TakeDamage(DamageMessage msg)
+    {
+        if (IsDead) return;
+
+        Health -= msg.DamageAmount;
+        if (Health <= 0)
+        {
+            Health = 0;
+            RespawnTimerText.gameObject.SetActive(true);
+            ObserverCamera.gameObject.SetActive(true);
+            _playerMesh.enabled = false;
+            IsDead = true;
+            _respawnTimer = 0f;
+        }
+    }
+
+    public void ResetVelocity()
+    {
+        _horizontalVelocity = Vector3.zero;
+        _verticalVelocity = 0f;
     }
 }

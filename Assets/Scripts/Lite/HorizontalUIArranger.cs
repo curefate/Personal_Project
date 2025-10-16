@@ -27,7 +27,7 @@ public class HorizontalUIArranger : MonoBehaviour
             RectTransform child = transform.GetChild(i) as RectTransform;
             if (child != null)
             {
-                child.anchoredPosition = new Vector2(startX + i * spacing, child.anchoredPosition.y);
+                child.anchoredPosition = Vector2.Lerp(child.anchoredPosition, new Vector2(startX + i * spacing, child.anchoredPosition.y), Time.deltaTime * 10f);
             }
         }
     }
