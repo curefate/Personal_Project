@@ -1314,7 +1314,7 @@ GameObject:
   - component: {fileID: -6511731072650644012}
   m_Layer: 0
   m_Name: ForestTower_Red
-  m_TagString: Tower
+  m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -22,11 +22,9 @@ public class TowerShopItem : MonoBehaviour
 
     public void OnClick()
     {
-        if (playerController.SelectedTower != null) return;
-
         if (playerController.Gold >= towerComponent.Cost)
         {
-            playerController.SelectedTower = Instantiate(TowerPrefab);
+            playerController.SelectTower(Instantiate(TowerPrefab));
             playerController.CloseMenu();
         }
         else

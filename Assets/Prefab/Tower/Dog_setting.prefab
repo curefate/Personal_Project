@@ -2393,7 +2393,7 @@ GameObject:
   - component: {fileID: 8360732270738144666}
   m_Layer: 0
   m_Name: Dog_setting
-  m_TagString: Tower
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2425,7 +2425,7 @@ Animator:
   m_GameObject: {fileID: 8845006403525409672}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a58d63122b09e9144938cd6a1ece4824, type: 3}
-  m_Controller: {fileID: 9100000, guid: b60dc9aa529b314489f628aa3b57c470, type: 2}
+  m_Controller: {fileID: 9100000, guid: cdf5df7fc1148a441a1fb076e0e5d3b5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

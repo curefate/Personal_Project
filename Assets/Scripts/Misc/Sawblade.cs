@@ -30,6 +30,12 @@ public class Sawblade : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // TODO
+        if (other.CompareTag("Enemy"))
+        {
+            if (other.TryGetComponent<BattleBase>(out var enemy))
+            {
+                enemy.TakeDamage(new DamageMessage(transform.gameObject, Damage));
+            }
+        }
     }
 }

@@ -126,7 +126,7 @@ MonoBehaviour:
   RotateSpeed: 600
   Lpoint: {fileID: 328973471002751333}
   Rpoint: {fileID: 4200822241794339303}
-  Damage: 0
+  Damage: 5
 --- !u!1 &4989345024088621647
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 6213386360374832812}
   m_Layer: 0
   m_Name: Traphome_Mid
-  m_TagString: Tower
+  m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -155,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 4989345024088621647}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 1.05, z: 0}
+  m_LocalPosition: {x: -0.65, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
