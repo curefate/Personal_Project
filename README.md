@@ -2,11 +2,22 @@
 
 The final project of Unity module.
 
----
+![](/Assets/Textures/screenshot.png)
+
+- [Overview](#Overview)
+- [Control](#Control)
+- [GameMechanics](#GameMechanics)
+- [ArmyList](#ArmyList)
+  - [DogKnight](#DogKnight)
+  - [SawBlade](#SawBlade)
+  - [Cannon](#Cannon)
+- [KnownErrors](#KnownErrors)
+- [FulturePlan](#FulturePlan)
+- [Others](#Others)
 
 ## Overview
 
-**The Last Commander** is a tower defend game. You act the last commander of the castle, rally your army and fight the evil skeletons.
+`The Last Commander` is a tower defend game. You act the last commander of the castle, rally your army and fight the evil skeletons.
 
 ## Control
 
@@ -16,14 +27,17 @@ The final project of Unity module.
 - L Click ---------- Attack/Build Army
 - E ---------- Open Menu
 - Esc ---------- Cancel
+- `Ctrl+G ---------- Cheat gold`
+- `Ctrl+V ---------- Cheat win`
+- `Ctrl+L ---------- Cheat lose`
 
-## Game Mechanics
+## GameMechanics
 
 Players can recruit army using gold, and killing enemies will drop potions and gold. Armys can be placed on the map to block enemy paths or deal damage. If the enemy has no path to the castle, they will target the army to attempt to open a path. Players who hold out against enough waves of enemy attacks win; if the enemy captures the castle, player lose.
 
-## Army List
+## ArmyList
 
-### Dog Knight
+### DogKnight
 - HP: 150
 - Damage: 8
 - Size: Single
@@ -31,12 +45,16 @@ Players can recruit army using gold, and killing enemies will drop potions and g
 - Can block the path
 - High attack speed
 
-### Saw Blade
+![](/Assets/Textures/1.png)
+
+### SawBlade
 - HP: 0
 - Damage: 10
 - Size: Double
 - Cost: 150
 - Will not be attacked
+
+![](/Assets/Textures/3.png)
 
 ### Cannon
 - HP: 80
@@ -45,12 +63,14 @@ Players can recruit army using gold, and killing enemies will drop potions and g
 - Cost: 300
 - AOE attack, the best damage dealer
 
-## Known Errors
+![](/Assets/Textures/4.png)
+
+## KnownErrors
 - Sometimes the enemy's material will not return to its original state from hited material.
 - There are two conflict bricks which shared same corrdnates.
 - When specific brick is blocked, the enemy may be unable to find the path.
 
-## Fulture Plan
+## FulturePlan
 - More SE & Particle effects
 - Fix bugs, ofcurse
 - Better GUI
