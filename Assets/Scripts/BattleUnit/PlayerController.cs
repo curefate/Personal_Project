@@ -72,8 +72,6 @@ public class PlayerController : BattleBase
 
     void Start()
     {
-        transform.position = RespawnPoint.position;
-
         _controller = GetComponent<CharacterController>();
         _camera = Camera.main;
         _gridManager = FindFirstObjectByType<GridManager>();
@@ -87,6 +85,8 @@ public class PlayerController : BattleBase
 
         Gold = InitialGold;
         Health = MaxHp;
+
+        Transport(RespawnPoint.position);
     }
 
     void Update()
@@ -186,10 +186,20 @@ public class PlayerController : BattleBase
             LastGroundedPosition = transform.position;
         }
 
-        // Cheat gold
+        // Cheat
         if (Input.GetKeyDown(KeyCode.G) && Input.GetKey(KeyCode.LeftControl))
         {
             Gold += 10000;
+        }
+        if (Input.GetKeyDown(KeyCode.V) && Input.GetKey(KeyCode.LeftControl))
+        {
+            GameManager manager = FindFirstObjectByType<GameManager>();
+            manager.Win();
+        }
+        if (Input.GetKeyDown(KeyCode.L) && Input.GetKey(KeyCode.LeftControl))
+        {
+            GameManager manager = FindFirstObjectByType<GameManager>();
+            manager.Lose();
         }
 
         // Animation

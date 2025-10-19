@@ -16300,7 +16300,7 @@ MonoBehaviour:
   SpawnPoints:
   - {fileID: 1511598074}
   - {fileID: 840251457}
-  StartCountDownTime: 5
+  StartCountDownTime: 15
   SpawnNumber: 0
   MaxWave: 5
   WaveTime: 30
@@ -33885,6 +33885,10 @@ PrefabInstance:
       propertyPath: BuildEffect
       value: 
       objectReference: {fileID: 1399743882}
+    - target: {fileID: 3429934114615515526, guid: 76380587e84f4254fa6a1230471cb83a, type: 3}
+      propertyPath: InitialGold
+      value: 800
+      objectReference: {fileID: 0}
     - target: {fileID: 3429934114615515526, guid: 76380587e84f4254fa6a1230471cb83a, type: 3}
       propertyPath: RespawnPoint
       value: 
