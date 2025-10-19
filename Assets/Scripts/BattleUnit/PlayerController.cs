@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : BattleBase
 {
     private CharacterController _controller;
@@ -29,16 +32,18 @@ public class PlayerController : BattleBase
     public int Gold;
     public int InitialGold = 100;
     public List<GameObject> Towers = new();
+    public ParticleSystem BuildEffect;
     private GameObject _selectedTower;
     private Quaternion _initialTowerRotation;
     private Vector3 _initialTowerOffset;
     private float _goldTimer = 0f;
     private bool _isMenuOpen = false;
     private bool _isFromHorizontal = true;
+    [SerializeField]
+    private Animator animator;
 
     // Battle
     [Header("Battle Settings")]
-    public GameObject BulletPrefab;
     public Camera ObserverCamera;
     public int MaxHp = 100;
     public float AttackCooldown = 0.5f;
@@ -49,6 +54,21 @@ public class PlayerController : BattleBase
     private float _recoverTimer = 0f;
     private float _respawnTimer = 0f;
     private float _damagedTimer = 0f;
+    [SerializeField]
+    private Collider hitBox;
+
+    [Header("Sounds")]
+    public AudioSource audioSource { get; private set; }
+    [SerializeField]
+    public AudioClip AttackSound;
+    public AudioClip BuildSound;
+    public AudioClip MenuOpenSound;
+    public AudioClip DeniedSound;
+    public AudioClip HealSound;
+    public AudioClip GetMoneySound;
+    public AudioClip DeadSound;
+
+    public List<GameObject> TowerList = new();
 
     void Start()
     {
@@ -58,6 +78,7 @@ public class PlayerController : BattleBase
         _camera = Camera.main;
         _gridManager = FindFirstObjectByType<GridManager>();
         _playerMesh = GetComponent<MeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         ShopUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -90,7 +111,7 @@ public class PlayerController : BattleBase
         _goldTimer += Time.deltaTime;
         if (_goldTimer >= 1f)
         {
-            Gold += 1;
+            Gold += 2;
             _goldTimer = 0f;
         }
 
@@ -170,6 +191,9 @@ public class PlayerController : BattleBase
         {
             Gold += 10000;
         }
+
+        // Animation
+        animator.SetFloat("Speed", moveDir.magnitude * targetSpeed);
     }
 
     private void HandleRotation()
@@ -225,7 +249,7 @@ public class PlayerController : BattleBase
                     _selectedTower.transform.position = centerPos + new Vector3(0, 1f, 0) + _initialTowerOffset;
                     _selectedTower.transform.rotation = _isFromHorizontal ? _initialTowerRotation : _initialTowerRotation * Quaternion.Euler(0, -90f, 0);
 
-                    // place tower
+                    // build tower
                     if (Input.GetMouseButtonDown(0))
                     {
                         Gold -= towerComponent.Cost;
@@ -234,8 +258,14 @@ public class PlayerController : BattleBase
                         {
                             _gridManager.GetBrickAt(coord).TowerPrefab = realTower;
                         }
+                        TowerList.Add(realTower);
                         Destroy(_selectedTower);
                         _selectedTower = null;
+
+                        // play effect
+                        BuildEffect.transform.position = realTower.transform.position;
+                        BuildEffect.Play();
+                        audioSource.PlayOneShot(BuildSound);
                     }
                 }
                 else
@@ -254,7 +284,26 @@ public class PlayerController : BattleBase
 
     private void HandleAttack()
     {
-
+        if (_isMenuOpen) return;
+        var info = animator.GetCurrentAnimatorStateInfo(0);
+        if (info.IsName("SwordAttack") && info.normalizedTime >= 0.2f && info.normalizedTime <= 0.75f)
+        {
+            hitBox.enabled = true;
+        }
+        else
+        {
+            hitBox.enabled = false;
+        }
+        if (Input.GetMouseButton(0) && _attackTimer >= AttackCooldown)
+        {
+            if (info.IsName("SwordAttack") && info.normalizedTime < 0.75f)
+            {
+                return;
+            }
+            audioSource.PlayOneShot(AttackSound);
+            _attackTimer = 0f;
+            animator.SetTrigger("Attack");
+        }
     }
 
     private void Respawning()
@@ -277,6 +326,7 @@ public class PlayerController : BattleBase
         ShopUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        audioSource.PlayOneShot(MenuOpenSound);
     }
 
     public void CloseMenu()
@@ -294,9 +344,13 @@ public class PlayerController : BattleBase
 
         _damagedTimer = 0f;
 
+        var direction = (transform.position - msg.Source.transform.position).normalized;
+        _horizontalVelocity += direction * 2f;
+
         Health -= msg.DamageAmount;
         if (Health <= 0)
         {
+            audioSource.PlayOneShot(DeadSound);
             Dead();
         }
     }

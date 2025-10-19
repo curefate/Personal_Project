@@ -29,6 +29,7 @@ public class TowerShopItem : MonoBehaviour
         }
         else
         {
+            playerController.audioSource.PlayOneShot(playerController.DeniedSound);
             GoldText.fontSize *= 1.5f;
         }
     }

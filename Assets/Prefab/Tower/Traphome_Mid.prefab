@@ -126,7 +126,7 @@ MonoBehaviour:
   RotateSpeed: 600
   Lpoint: {fileID: 328973471002751333}
   Rpoint: {fileID: 4200822241794339303}
-  Damage: 5
+  Damage: 8
 --- !u!1 &4989345024088621647
 GameObject:
   m_ObjectHideFlags: 0

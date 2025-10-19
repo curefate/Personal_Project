@@ -4,8 +4,14 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class DogKnight : BattleBase
 {
+    public AudioClip HitSound;
+    private List<MeshRenderer> _rendersNeedToFlash;
+    private List<SkinnedMeshRenderer> _skinnedRendersNeedToFlash;
+    [SerializeField]
+    private Material flashMaterial;
     [SerializeField]
     private Collider hitBox;
     [SerializeField]
@@ -13,6 +19,7 @@ public class DogKnight : BattleBase
     private float _attackRange = 2.8f;
     private bool _dominating = false;
     private Animator _animator;
+    private AudioSource _audioSource;
     private Dictionary<GameObject, float> _damagedTimers = new();
     private bool _isDead = false;
 
@@ -20,8 +27,11 @@ public class DogKnight : BattleBase
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
         hitBox.enabled = false;
         hitBox.isTrigger = true;
+        _rendersNeedToFlash = GetComponentsInChildren<MeshRenderer>().ToList();
+        _skinnedRendersNeedToFlash = GetComponentsInChildren<SkinnedMeshRenderer>().ToList();
     }
 
     void Update()
@@ -45,7 +55,6 @@ public class DogKnight : BattleBase
             _animator.SetBool("IsAttacking", false);
         }
 
-
         var info = _animator.GetCurrentAnimatorStateInfo(0);
 
         if (info.IsName("Die") && info.normalizedTime >= 1.0f)
@@ -56,11 +65,19 @@ public class DogKnight : BattleBase
         if (info.IsName("Attack01") && info.normalizedTime >= 0.3f && info.normalizedTime <= 0.8f)
         {
             hitBox.enabled = true;
+            if (_audioSource != null && HitSound != null && !_audioSource.isPlaying)
+            {
+                _audioSource.PlayOneShot(HitSound);
+            }
         }
         else if (info.IsName("Attack02") && info.normalizedTime >= 0.5f && info.normalizedTime <= 0.8f)
         {
             hitBox.enabled = true;
             _dominating = true;
+            if (_audioSource != null && HitSound != null && !_audioSource.isPlaying)
+            {
+                _audioSource.PlayOneShot(HitSound);
+            }
         }
         else
         {
@@ -81,6 +98,8 @@ public class DogKnight : BattleBase
 
         _damagedTimers[msg.Source] = 0f;
 
+        StartCoroutine(FlashEffect());
+
         Health -= msg.DamageAmount;
         if (Health <= 0)
         {
@@ -91,6 +110,32 @@ public class DogKnight : BattleBase
         if (!_dominating)
         {
             _animator.SetTrigger("GetHit");
+        }
+    }
+
+    private IEnumerator FlashEffect()
+    {
+        var originalMaterials = new List<Material>();
+        foreach (var renderer in _rendersNeedToFlash)
+        {
+            originalMaterials.Add(renderer.material);
+            renderer.material = flashMaterial;
+        }
+        foreach (var skinnedRenderer in _skinnedRendersNeedToFlash)
+        {
+            originalMaterials.Add(skinnedRenderer.material);
+            skinnedRenderer.material = flashMaterial;
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        for (int i = 0; i < _rendersNeedToFlash.Count; i++)
+        {
+            _rendersNeedToFlash[i].material = originalMaterials[i];
+        }
+        for (int i = 0; i < _skinnedRendersNeedToFlash.Count; i++)
+        {
+            _skinnedRendersNeedToFlash[i].material = originalMaterials[i + _rendersNeedToFlash.Count];
         }
     }
 }
