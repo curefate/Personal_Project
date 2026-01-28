@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(MeshRenderer))]
@@ -24,6 +25,14 @@ public class PlayerController : BattleBase
     private float _cameraAngleLimit = 60f;
     private float _verticalVelocity = 0f;
     private Vector3 _horizontalVelocity = Vector3.zero;
+    private bool _isSprinting = false;
+    private InputAction _moveAction;
+    private InputAction _lookAction;
+    private InputAction _jumpAction;
+    private InputAction _attackAction;
+    private InputAction _sprintAction;
+    private InputAction _interactAction;
+    private InputAction _UICancelAction;
 
     // UI & Tower Set
     [Header("UI & Tower Settings")]
@@ -77,6 +86,14 @@ public class PlayerController : BattleBase
         _gridManager = FindFirstObjectByType<GridManager>();
         _playerMesh = GetComponent<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();
+
+        _moveAction = InputSystem.actions.FindAction("Move");
+        _lookAction = InputSystem.actions.FindAction("Look");
+        _jumpAction = InputSystem.actions.FindAction("Jump");
+        _attackAction = InputSystem.actions.FindAction("Attack");
+        _sprintAction = InputSystem.actions.FindAction("Sprint");
+        _interactAction = InputSystem.actions.FindAction("Interact");
+        _UICancelAction = InputSystem.actions.FindAction("UI/Cancel");
 
         ShopUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -133,6 +150,10 @@ public class PlayerController : BattleBase
 
     private void HandleMovement()
     {
+        var moveInput = _moveAction.ReadValue<Vector2>();
+        _isSprinting = _isSprinting || _sprintAction.IsPressed();
+        _isSprinting = moveInput.magnitude > 0.1f && _sprintAction.IsPressed();
+
         // vertical
         if (_controller.isGrounded)
         {
@@ -140,7 +161,7 @@ public class PlayerController : BattleBase
             {
                 _verticalVelocity = -2f;
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (_jumpAction.IsPressed())
             {
                 _verticalVelocity = JumpHeight;
             }
@@ -152,9 +173,9 @@ public class PlayerController : BattleBase
         }
 
         // horizontal
-        Vector3 inputDir = new(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        Vector3 inputDir = new(moveInput.x, 0, moveInput.y);
         Vector3 moveDir = (transform.right * inputDir.x + transform.forward * inputDir.z).normalized;
-        float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? SprintSpeed : MoveSpeed;
+        float targetSpeed = _isSprinting ? SprintSpeed : MoveSpeed;
         Vector3 targetVelocity = moveDir * targetSpeed;
         if (_controller.isGrounded)
         {
@@ -178,7 +199,7 @@ public class PlayerController : BattleBase
 
         // apply
         _controller.Move(finalVelocity * Time.deltaTime);
-        _camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, Input.GetKey(KeyCode.LeftShift) ? 70f : 60f, 5f * Time.deltaTime);
+        _camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, _isSprinting ? 70f : 60f, 5f * Time.deltaTime);
 
         // Update last grounded position
         if (_controller.isGrounded)
@@ -208,8 +229,9 @@ public class PlayerController : BattleBase
 
     private void HandleRotation()
     {
-        var mouseX = Input.GetAxis("Mouse X");
-        var mouseY = Input.GetAxis("Mouse Y");
+        var lookInput = _lookAction.ReadValue<Vector2>();
+        var mouseX = lookInput.x;
+        var mouseY = lookInput.y;
         transform.Rotate(MouseSensitivity * mouseX * Vector3.up);
         _camera.transform.Rotate(MouseSensitivity * mouseY * Vector3.left);
         var currentAngle = _camera.transform.eulerAngles.x;
@@ -225,13 +247,13 @@ public class PlayerController : BattleBase
 
     private void HandleShopAndTower()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (_interactAction.WasPressedThisFrame())
         {
             _selectedTower = null;
             Destroy(_selectedTower);
             OpenMenu();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && _isMenuOpen)
+        if (_UICancelAction.WasPressedThisFrame() && _isMenuOpen)
         {
             CloseMenu();
         }
@@ -260,7 +282,7 @@ public class PlayerController : BattleBase
                     _selectedTower.transform.rotation = _isFromHorizontal ? _initialTowerRotation : _initialTowerRotation * Quaternion.Euler(0, -90f, 0);
 
                     // build tower
-                    if (Input.GetMouseButtonDown(0))
+                    if (_attackAction.WasPressedThisFrame())
                     {
                         Gold -= towerComponent.Cost;
                         var realTower = Instantiate(Towers.Find(t => t.GetComponent<Tower>().Number == towerComponent.Number), _selectedTower.transform.position, _selectedTower.transform.rotation);
@@ -284,7 +306,7 @@ public class PlayerController : BattleBase
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (_UICancelAction.WasPressedThisFrame())
             {
                 Destroy(_selectedTower);
                 _selectedTower = null;
@@ -304,7 +326,7 @@ public class PlayerController : BattleBase
         {
             hitBox.enabled = false;
         }
-        if (Input.GetMouseButton(0) && _attackTimer >= AttackCooldown)
+        if (_attackAction.IsPressed() && _attackTimer >= AttackCooldown)
         {
             if (info.IsName("SwordAttack") && info.normalizedTime < 0.75f)
             {
