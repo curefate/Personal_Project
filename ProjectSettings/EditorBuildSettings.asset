@@ -15,5 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Map.unity
     guid: 6a8648ba1520c864bba0cef445796830
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5f5443748c28c4b47ba6d8bbae1207a4, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: fe74023e52c78c9419a061e2d8f3fb59, type: 2}
   m_UseUCBPForAssetBundles: 0
