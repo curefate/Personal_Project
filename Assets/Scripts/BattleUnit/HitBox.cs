@@ -1,8 +1,10 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class HitBox : MonoBehaviour
 {
-    public GameObject Owner;
+    [SerializeField]
+    private GameObject Owner;
     public int Damage;
 
     void Start()
@@ -15,27 +17,9 @@ public class HitBox : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        bool isEnemy = Owner.CompareTag("Enemy");
-
-        if (isEnemy)
+        if (other.TryGetComponent<BattleBase>(out var target))
         {
-            if (other.CompareTag("Player") || other.CompareTag("Ally"))
-            {
-                if (other.TryGetComponent<BattleBase>(out var target))
-                {
-                    target.TakeDamage(new DamageMessage(Owner, Damage));
-                }
-            }
-        }
-        else
-        {
-            if (other.CompareTag("Enemy"))
-            {
-                if (other.TryGetComponent<BattleBase>(out var target))
-                {
-                    target.TakeDamage(new DamageMessage(Owner, Damage));
-                }
-            }
+            target.TakeDamage(new DamageMessage(Owner, Damage));
         }
     }
 }

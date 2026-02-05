@@ -261,7 +261,7 @@ public class PlayerController : BattleBase
         if (_selectedTower != null)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, 10, LayerMask.GetMask("Ground")) && hit.collider.gameObject.CompareTag("Brick"))
+            if (Physics.Raycast(ray, out RaycastHit hit, 10, LayerMask.GetMask("Ground")) && hit.collider.gameObject.CompareTag("Brick")) // hit.transform.TryGetComponent<GridBrick>(out GridBrick brick)
             {
                 GridBrick brick = hit.collider.gameObject.GetComponent<GridBrick>();
                 Tower towerComponent = _selectedTower.GetComponent<Tower>();
