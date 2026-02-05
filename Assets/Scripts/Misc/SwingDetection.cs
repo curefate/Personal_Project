@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
@@ -8,6 +9,7 @@ public class SwingDetection : MonoBehaviour
 {
     private IXRSelectInteractor interactor;
     private XRGrabInteractable grab;
+    private HapticImpulsePlayer hapticPlayer;
 
     public float swingThreshold;
     public UnityEvent onSwing;
@@ -38,12 +40,16 @@ public class SwingDetection : MonoBehaviour
         interactor = args.interactorObject;
         lastPos = interactor.transform.parent.transform.localPosition;
         isHeld = true;
+
+        hapticPlayer = interactor.transform.parent.GetComponent<HapticImpulsePlayer>();
     }
 
     private void OnReleased(SelectExitEventArgs args)
     {
         interactor = null;
         isHeld = false;
+
+        hapticPlayer = null;
     }
 
     private void Update()
@@ -58,6 +64,7 @@ public class SwingDetection : MonoBehaviour
         {
             isSwinged = true;
             onSwing.Invoke();
+            hapticPlayer?.SendHapticImpulse(0.5f, 0.2f);
         }
 
         if (speed < swingThreshold && isSwinged)
