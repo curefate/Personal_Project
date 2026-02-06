@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1104444151866693462}
   - component: {fileID: 7651744183770067941}
   - component: {fileID: 2041835487097298533}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3794820024063365173}
   m_Layer: 0
   m_Name: Excaliburn
-  m_TagString: Ally
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

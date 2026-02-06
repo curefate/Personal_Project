@@ -38,7 +38,7 @@ public class DogKnight : BattleBase
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, LayerMask.GetMask("Enemy"));
         List<Collider> sortedHits = hits
-            .Where(c => c.CompareTag("Enemy"))
+            //.Where(c => c.CompareTag("Enemy"))
             .OrderBy(c => Vector3.Distance(transform.position, c.transform.position))
             .ToList();
         if (sortedHits.Count > 0)
@@ -59,7 +59,7 @@ public class DogKnight : BattleBase
 
         if (info.IsName("Die") && info.normalizedTime >= 1.0f)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
 
         if (info.IsName("Attack01") && info.normalizedTime >= 0.3f && info.normalizedTime <= 0.8f)

@@ -13,6 +13,8 @@ public class PlayerController : BattleBase
     private GridManager _gridManager;
     private MeshRenderer _playerMesh;
 
+    public TowerManager towerManager;
+
     // Control
     [Header("Movement Settings")]
     public Transform RespawnPoint;
@@ -76,8 +78,6 @@ public class PlayerController : BattleBase
     public AudioClip HealSound;
     public AudioClip GetMoneySound;
     public AudioClip DeadSound;
-
-    public List<GameObject> TowerList = new();
 
     void Start()
     {
@@ -290,7 +290,7 @@ public class PlayerController : BattleBase
                         {
                             _gridManager.GetBrickAt(coord).TowerPrefab = realTower;
                         }
-                        TowerList.Add(realTower);
+                        towerManager.TowerList.Add(realTower);
                         Destroy(_selectedTower);
                         _selectedTower = null;
 

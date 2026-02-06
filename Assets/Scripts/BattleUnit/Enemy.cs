@@ -29,7 +29,7 @@ public class Enemy : BattleBase
     private Dictionary<GameObject, float> _damagedTimers = new();
     private bool _dominating = false;
     private Dictionary<GameObject, float> _targetPriorities = new();
-    private PlayerController _playerController;
+    private TowerManager towerManager;
     private GameObject _castle;
 
     void Start()
@@ -49,9 +49,9 @@ public class Enemy : BattleBase
         {
             Debug.LogError("Animator component not found on " + gameObject.name);
         }
+        towerManager = FindFirstObjectByType<TowerManager>();
         _audioSource = GetComponent<AudioSource>();
         _audioSource.Play();
-        _playerController = FindFirstObjectByType<PlayerController>();
         _castle = FindFirstObjectByType<Castle>().gameObject;
         _targetPriorities[_castle] = 6000;
         CurrentTarget = _castle;
@@ -179,7 +179,7 @@ public class Enemy : BattleBase
 
         if (highestPriority == 0f || !CheckTargetValidity(CurrentTarget))
         {
-            var nearestTower = _playerController.TowerList
+            var nearestTower = towerManager.TowerList
                 .Where(tower => tower != null)
                 .OrderBy(tower => Vector3.Distance(tower.transform.position, _castle.transform.position));
             foreach (var tower in nearestTower)
@@ -191,6 +191,8 @@ public class Enemy : BattleBase
                 }
             }
         }
+
+        if (CurrentTarget == null) CurrentTarget = _castle;
     }
 
     private bool CheckTargetValidity(GameObject target)

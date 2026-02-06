@@ -35,7 +35,7 @@ public class Cannon : BattleBase
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, LayerMask.GetMask("Enemy"));
         List<Collider> sortedHits = hits
-            .Where(c => c.CompareTag("Enemy"))
+            //.Where(c => c.CompareTag("Enemy"))
             .OrderBy(c => Vector3.Distance(transform.position, c.transform.position))
             .ToList();
         if (sortedHits.Count > 0)
@@ -77,7 +77,7 @@ public class Cannon : BattleBase
     private IEnumerator DelayDestroy(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     private IEnumerator FireExplosion(float delay, Vector3 position)
@@ -92,7 +92,7 @@ public class Cannon : BattleBase
         Collider[] rangeHits = Physics.OverlapSphere(position, explosionRadius, LayerMask.GetMask("Enemy"));
         foreach (var hit in rangeHits)
         {
-            if (hit.CompareTag("Enemy"))
+            //if (hit.CompareTag("Enemy"))
             {
                 var battleBase = hit.GetComponent<BattleBase>();
                 if (battleBase != null)
