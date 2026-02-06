@@ -22,7 +22,7 @@ public class TowerShopItem : MonoBehaviour
 
     public void OnClick()
     {
-        if (playerController.Gold >= towerComponent.Cost)
+        /* if (playerController.Gold >= towerComponent.Cost)
         {
             playerController.SelectTower(Instantiate(TowerPrefab));
             playerController.CloseMenu();
@@ -31,6 +31,6 @@ public class TowerShopItem : MonoBehaviour
         {
             playerController.audioSource.PlayOneShot(playerController.DeniedSound);
             GoldText.fontSize *= 1.5f;
-        }
+        } */
     }
 }

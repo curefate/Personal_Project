@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66b483253b1a4a4b81d6fe9075f1ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwingDetection
-  swingThreshold: 4.5
+  swingThreshold: 4
   onSwing:
     m_PersistentCalls:
       m_Calls:

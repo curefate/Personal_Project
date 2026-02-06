@@ -282,7 +282,7 @@ public class PlayerController : BattleBase
                     _selectedTower.transform.rotation = _isFromHorizontal ? _initialTowerRotation : _initialTowerRotation * Quaternion.Euler(0, -90f, 0);
 
                     // build tower
-                    if (_attackAction.WasPressedThisFrame())
+                    /* if (_attackAction.WasPressedThisFrame())
                     {
                         Gold -= towerComponent.Cost;
                         var realTower = Instantiate(Towers.Find(t => t.GetComponent<Tower>().Number == towerComponent.Number), _selectedTower.transform.position, _selectedTower.transform.rotation);
@@ -298,7 +298,7 @@ public class PlayerController : BattleBase
                         BuildEffect.transform.position = realTower.transform.position;
                         BuildEffect.Play();
                         audioSource.PlayOneShot(BuildSound);
-                    }
+                    } */
                 }
                 else
                 {

@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 624276756201505727}
   - component: {fileID: 3803251407574401213}
   - component: {fileID: 8401320469268326434}
+  - component: {fileID: 4003653206806306676}
   m_Layer: 0
   m_Name: Traphome_Mid_setting
   m_TagString: Untagged
@@ -127,6 +128,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -148,9 +151,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8401320469268326434
 MonoBehaviour:
@@ -165,8 +170,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SizeType: 1
-  Cost: 150
-  Number: 2
+--- !u!114 &4003653206806306676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6827150566716039557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fbd50755c565f46b7e727ae6836512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerBluePrint
+  Cost: 100
+  RealTowerPrefab: {fileID: 4989345024088621647, guid: bf91802062205054b81b4d2d64e63f36, type: 3}
 --- !u!1 &7841081585788847335
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +245,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -249,7 +268,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
