@@ -2405,7 +2405,7 @@ GameObject:
   - component: {fileID: 8360732270738144666}
   - component: {fileID: -4043811248673372968}
   m_Layer: 0
-  m_Name: Dog_setting
+  m_Name: DogBluePrint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

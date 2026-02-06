@@ -9,6 +9,9 @@ public class TextureDictionary : DictionaryAsset<Texture> { }
 [CreateAssetMenu(fileName = "AudioDictionary", menuName = "Custom/Audio Dictionary Asset")]
 public class AudioDictionary : DictionaryAsset<AudioClip> { }
 
+[CreateAssetMenu(fileName = "PrefabDictionary", menuName = "Custom/Prefab Dictionary Asset")]
+public class PrefabDictionary : DictionaryAsset<GameObject> { }
+
 public abstract class DictionaryAsset<T> : ScriptableObject
 {
     [Serializable]

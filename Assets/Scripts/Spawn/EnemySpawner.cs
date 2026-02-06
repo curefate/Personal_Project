@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public List<GameObject> EnemyPrefabs;
+    public PrefabDictionary EnemyPrefabs;
     public Transform[] SpawnPoints;
-    
+    public List<GameObject> ActiveEnemies = new();
+
     private float _spawnOffset = 1f;
 
-    public void SpawnEnemy(int number)
+    public void SpawnEnemy(int number, string enemyKey)
     {
-        if (EnemyPrefabs.Count == 0 || SpawnPoints.Length == 0) return;
+        if (SpawnPoints.Length == 0 || EnemyPrefabs == null || EnemyPrefabs.entries.Count == 0) return;
 
-        var enemyPrefab = EnemyPrefabs[Random.Range(0, EnemyPrefabs.Count)];
+        GameObject enemyPrefab = EnemyPrefabs.GetValue(enemyKey);
+        if (enemyPrefab == null)
+        {
+            enemyPrefab = EnemyPrefabs.entries[0].value;
+        }
 
         for (int i = 0; i < number; i++)
         {
@@ -27,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator DelaySpawnEnemy(float delay, GameObject enemyPrefab, Vector3 position, Quaternion rotation)
     {
         yield return new WaitForSeconds(delay);
-        Instantiate(enemyPrefab, position, rotation);
+        var enemy = Instantiate(enemyPrefab, position, rotation);
+        ActiveEnemies.Add(enemy);
     }
 }

@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 8401320469268326434}
   - component: {fileID: 4003653206806306676}
   m_Layer: 0
-  m_Name: Traphome_Mid_setting
+  m_Name: Traphome_MidBluePrint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

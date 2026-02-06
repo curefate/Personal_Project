@@ -439,8 +439,9 @@ GameObject:
   - component: {fileID: 2572445954989186427}
   - component: {fileID: 4480137640391105741}
   - component: {fileID: -5895083658482771400}
+  - component: {fileID: -7784091847711618004}
   m_Layer: 0
-  m_Name: CannonSetting
+  m_Name: CannonBluePrint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -489,6 +490,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerBluePrint
   Cost: 300
   RealTowerPrefab: {fileID: 6714337881128359355, guid: 00eaa0f2df4d12348873b7f137d98e85, type: 3}
+--- !u!114 &-7784091847711618004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851995208293028063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694f3b8944be4064189ac3b2d3fe8a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Floating
+  FloatHeight: 0.4
+  FloatSpeed: 5
+  RotationSpeed: 20
 --- !u!1 &4224266964494987983
 GameObject:
   m_ObjectHideFlags: 0
