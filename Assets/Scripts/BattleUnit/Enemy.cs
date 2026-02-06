@@ -92,7 +92,7 @@ public class Enemy : BattleBase
                 _audioSource.PlayOneShot(HitSound);
             }
         }
-        else if (info.IsName("slash02") && info.normalizedTime >= 0.5f && info.normalizedTime <= 0.8f)
+        else if (info.IsName("slash 02") && info.normalizedTime >= 0.5f && info.normalizedTime <= 0.8f)
         {
             hitBox.enabled = true;
             if (_audioSource != null && HitSound != null && !_audioSource.isPlaying)
