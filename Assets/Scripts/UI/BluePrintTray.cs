@@ -8,7 +8,7 @@ public class BluePrintTray : MonoBehaviour
     {
         if (transform.childCount == 0 && bluePrintPrefab != null)
         {
-            Instantiate(bluePrintPrefab, transform);
+            Instantiate(bluePrintPrefab, transform.position, Quaternion.identity, transform);
         }
     }
 }

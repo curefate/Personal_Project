@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: SwordAudio
+  m_Name: AudioDict
   m_EditorClassIdentifier: Assembly-CSharp::AudioDictionary
   entries:
   - key: attack
     value: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+  - key: error
+    value: {fileID: 8300000, guid: 1ed8fb76fc64e4e46847348138782234, type: 3}
+  - key: build
+    value: {fileID: 8300000, guid: abdbbfd33a46f4549987385f85c536b5, type: 3}

@@ -17,6 +17,7 @@ public class SwingDetection : MonoBehaviour
     private Vector3 lastPos;
     private bool isHeld;
     private bool isSwinged;
+    public bool IsSwinged { get { return isSwinged; } }
 
     private void Awake()
     {
