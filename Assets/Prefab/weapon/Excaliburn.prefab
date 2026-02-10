@@ -574,7 +574,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  m_FarAttachMode: 0
+  m_FarAttachMode: 1
   m_LimitLinearVelocity: 0
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
@@ -805,3 +805,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioPlayer
   audioAsset: {fileID: 11400000, guid: 28e83994c4d572d45b6c9f634f2a3dbb, type: 2}
   audioSource: {fileID: 2735162226569883783}
+  useCameraSource: 0

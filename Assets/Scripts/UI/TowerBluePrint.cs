@@ -84,6 +84,7 @@ public class TowerBluePrint : MonoBehaviour
             {
                 mat.material = HighlightMaterial;
             }
+            _hapticPlayer.SendHapticImpulse(0.5f, 0.2f);
         }
         else
         {
