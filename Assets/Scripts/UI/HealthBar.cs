@@ -4,7 +4,6 @@ public class HealthBar : MonoBehaviour
 {
     public BattleBase Target;
     public int MaxHealth;
-    public RectTransform RedBar;
     public RectTransform GreenBar;
 
     private float _originWidth;

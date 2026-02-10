@@ -31,6 +31,8 @@ public class TowerBluePrint : MonoBehaviour
     private ParticleSpawner _particleSpawner;
     private AudioPlayer _audioPlayer;
 
+    private bool _isHaptic;
+
     private void Awake()
     {
         _originalMaterial = GetComponentInChildren<Renderer>().material;
@@ -84,7 +86,11 @@ public class TowerBluePrint : MonoBehaviour
             {
                 mat.material = HighlightMaterial;
             }
-            _hapticPlayer.SendHapticImpulse(0.5f, 0.2f);
+            if (!_isHaptic)
+            {
+                _hapticPlayer.SendHapticImpulse(0.5f, 0.1f);
+                _isHaptic = true;
+            }
         }
         else
         {
@@ -93,6 +99,7 @@ public class TowerBluePrint : MonoBehaviour
             {
                 mat.material = _originalMaterial;
             }
+            _isHaptic = false;
         }
     }
 
@@ -142,7 +149,7 @@ public class TowerBluePrint : MonoBehaviour
         {
             if (_goldManager.Gold < Cost)
             {
-                _audioPlayer.Play("error");
+                _audioPlayer.PlayOneShot("error");
                 return;
             }
 
@@ -154,7 +161,7 @@ public class TowerBluePrint : MonoBehaviour
             var tower = Instantiate(RealTowerPrefab, centerPos + InitialOffset, Quaternion.identity);
             _goldManager.Gold -= Cost;
             _particleSpawner.SpawnParticle("smoke", centerPos + InitialOffset);
-            _audioPlayer.Play("build");
+            _audioPlayer.PlayOneShot("build");
             foreach (var coord in matchCoords)
             {
                 _gridManager.GetBrickAt(coord).TowerPrefab = tower;

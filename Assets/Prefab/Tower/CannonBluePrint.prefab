@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694f3b8944be4064189ac3b2d3fe8a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Floating
-  FloatHeight: 0.01
+  FloatHeight: 0.005
   FloatSpeed: 5
   RotationSpeed: 20
 --- !u!65 &118382219231944206

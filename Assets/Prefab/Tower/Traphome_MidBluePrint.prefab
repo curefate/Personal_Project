@@ -64,8 +64,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.02, y: 0.03, z: 0.03}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1815325841808237104}
   m_Father: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694f3b8944be4064189ac3b2d3fe8a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Floating
-  FloatHeight: 0.01
+  FloatHeight: 0.005
   FloatSpeed: 5
   RotationSpeed: 20
 --- !u!114 &4595061604689068282

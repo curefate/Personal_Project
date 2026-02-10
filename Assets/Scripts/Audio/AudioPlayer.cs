@@ -19,7 +19,7 @@ public class AudioPlayer : MonoBehaviour
         }
     }
 
-    public void Play(string key)
+    public void PlayOneShot(string key)
     {
         var clip = audioAsset.GetValue(key);
         if (clip == null)

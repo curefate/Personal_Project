@@ -8,7 +8,7 @@ public class GoldManager : MonoBehaviour
         get => gold;
         set
         {
-            gold = value;
+            gold = value < 0 ? 0 : value;
         }
     }
     public bool increaseGold;
