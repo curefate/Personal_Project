@@ -85,6 +85,7 @@ MonoBehaviour:
   FloatHeight: 0.005
   FloatSpeed: 5
   RotationSpeed: 20
+  ifFollowParent: 1
 --- !u!114 &4595061604689068282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,9 +146,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162191202609879459}
   serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_Mass: 100
+  m_LinearDamping: 999
+  m_AngularDamping: 999
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -377,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd7a626238598c42828ed7ce8312798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioPlayer
-  audioAsset: {fileID: 11400000, guid: 28e83994c4d572d45b6c9f634f2a3dbb, type: 2}
+  audioAsset: {fileID: 11400000, guid: 23129653ac59d8b4395af91ec819a7aa, type: 2}
   audioSource: {fileID: 0}
   useCameraSource: 1
 --- !u!1 &2621394637878935014

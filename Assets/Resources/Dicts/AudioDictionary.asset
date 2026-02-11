@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: AudioDict
+  m_Script: {fileID: 11500000, guid: 06b4556fa5b67944ab1bb239041cd40d, type: 3}
+  m_Name: AudioDictionary
   m_EditorClassIdentifier: Assembly-CSharp::AudioDictionary
   entries:
-  - key: attack
-    value: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+  - key: menu
+    value: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
   - key: error
     value: {fileID: 8300000, guid: 1ed8fb76fc64e4e46847348138782234, type: 3}
   - key: build
     value: {fileID: 8300000, guid: abdbbfd33a46f4549987385f85c536b5, type: 3}
-  - key: menu
-    value: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}

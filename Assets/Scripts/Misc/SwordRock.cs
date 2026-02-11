@@ -80,7 +80,7 @@ public class SwordRock : MonoBehaviour
     {
         while (true)
         {
-            var target = transform.position + new Vector3(Random.Range(-0.05f, 0.05f), -0.1f, Random.Range(-0.05f, 0.05f));
+            var target = transform.position + new Vector3(Random.Range(-0.05f, 0.05f), -0.2f, Random.Range(-0.05f, 0.05f));
             transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * 5f);
             yield return new WaitForSeconds(0.1f);
         }

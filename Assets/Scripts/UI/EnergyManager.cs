@@ -16,7 +16,7 @@ public class EnergyManager : MonoBehaviour
     public float increaseInterval;
     public int increaseAmount;
 
-    public float EnergyPercentage => (float)Energy / maxEnergy * 100;
+    public float EnergyPercentage => (float)Energy / maxEnergy;
 
     private float _timer;
 

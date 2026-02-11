@@ -149,7 +149,7 @@ public class TowerBluePrint : MonoBehaviour
         {
             if (_goldManager.Gold < Cost)
             {
-                _audioPlayer.PlayOneShot("error");
+                _audioPlayer.PlayOneShotFromAsset("error");
                 return;
             }
 
@@ -161,7 +161,7 @@ public class TowerBluePrint : MonoBehaviour
             var tower = Instantiate(RealTowerPrefab, centerPos + InitialOffset, Quaternion.identity);
             _goldManager.Gold -= Cost;
             _particleSpawner.SpawnParticle("smoke", centerPos + InitialOffset);
-            _audioPlayer.PlayOneShot("build");
+            _audioPlayer.PlayOneShotFromAsset("build");
             foreach (var coord in matchCoords)
             {
                 _gridManager.GetBrickAt(coord).TowerPrefab = tower;

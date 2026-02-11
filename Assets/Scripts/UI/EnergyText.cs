@@ -17,7 +17,7 @@ public class EnergyText : MonoBehaviour
 
     void Update()
     {
-        EnergyBarFill.sizeDelta = Vector2.Lerp(EnergyBarFill.sizeDelta, new Vector2(_energyManager.EnergyPercentage / 100 * _originalEnergyBarWidth, EnergyBarFill.sizeDelta.y), Time.deltaTime * 10);
-        EnergyAmountText.text = "Energy:" + _energyManager.EnergyPercentage.ToString() + "%";
+        EnergyBarFill.sizeDelta = Vector2.Lerp(EnergyBarFill.sizeDelta, new Vector2(_energyManager.EnergyPercentage * _originalEnergyBarWidth, EnergyBarFill.sizeDelta.y), Time.deltaTime * 10);
+        EnergyAmountText.text = "Energy:" + (_energyManager.EnergyPercentage * 100).ToString("F0") + "%";
     }
 }

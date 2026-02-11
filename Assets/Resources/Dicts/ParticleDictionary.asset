@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: EnemyDict
+  m_Script: {fileID: 11500000, guid: 364c0d296236a614d94a4b1c4bd1a7da, type: 3}
+  m_Name: ParticleDictionary
   m_EditorClassIdentifier: Assembly-CSharp::PrefabDictionary
   entries:
-  - key: skeleton
-    value: {fileID: 3027957095323620161, guid: 836969d0448c3cb46a751ec3d7f5bc26, type: 3}
+  - key: smoke
+    value: {fileID: 2630815748524575241, guid: cb7cd9b0c56a24d49a40784bd3203ae6, type: 3}

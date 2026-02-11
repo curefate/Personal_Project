@@ -6,6 +6,7 @@ public class Floating : MonoBehaviour
     public float FloatSpeed;
     public float RotationSpeed;
     private Vector3 _startPosition;
+    public bool ifFollowParent;
 
     void Start()
     {
@@ -14,7 +15,7 @@ public class Floating : MonoBehaviour
 
     void Update()
     {
-        if (transform.parent != null)
+        if (ifFollowParent && transform.parent != null)
         {
             _startPosition = transform.parent.position;
         }

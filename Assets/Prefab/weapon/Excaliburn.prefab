@@ -618,13 +618,13 @@ MonoBehaviour:
   onSwing:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 547548989742641850}
-        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 5
+      - m_Target: {fileID: 2735162226569883783}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: attack
@@ -671,7 +671,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2402939253467213571}
   - component: {fileID: 2735162226569883783}
-  - component: {fileID: 547548989742641850}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -703,7 +702,7 @@ AudioSource:
   m_GameObject: {fileID: 7240974052645484167}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 09cdc7f16cc819c4f98b78e227f42d1a, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -791,18 +790,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &547548989742641850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7240974052645484167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fd7a626238598c42828ed7ce8312798, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioPlayer
-  audioAsset: {fileID: 11400000, guid: 28e83994c4d572d45b6c9f634f2a3dbb, type: 2}
-  audioSource: {fileID: 2735162226569883783}
-  useCameraSource: 0
