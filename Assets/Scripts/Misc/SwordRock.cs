@@ -13,6 +13,7 @@ public class SwordRock : MonoBehaviour
     public TextPusher textPusher;
 
     private AudioSource _audioSource;
+    private EnergyManager _energyManager;
 
     private float _lastYpos;
     private float _timer;
@@ -30,6 +31,7 @@ public class SwordRock : MonoBehaviour
         _audioSource.Play();
         _audioSource.Pause();
         _audioSource.pitch = 1.3f;
+        _energyManager = FindFirstObjectByType<EnergyManager>();
     }
 
     void Update()
@@ -66,6 +68,7 @@ public class SwordRock : MonoBehaviour
             _audioSource.PlayOneShot(stoneCrushAudio);
             _audioSource.PlayOneShot(cureAudio);
             textPusher.PushText("I have restored some of your power...");
+            _energyManager.Energy += 100;
 
             excalibur.transform.parent = null;
             var exrb = excalibur.GetComponent<Rigidbody>();

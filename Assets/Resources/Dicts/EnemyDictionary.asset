@@ -15,3 +15,7 @@ MonoBehaviour:
   entries:
   - key: skeleton
     value: {fileID: 3027957095323620161, guid: 836969d0448c3cb46a751ec3d7f5bc26, type: 3}
+  - key: gold_skeleton
+    value: {fileID: 4103652524790172653, guid: ce265582905d12c47b47ffe6d73f7f51, type: 3}
+  - key: huge_skeleton
+    value: {fileID: 6965709202082280590, guid: b54736a307b86af4390b6d4637b9b66a, type: 3}

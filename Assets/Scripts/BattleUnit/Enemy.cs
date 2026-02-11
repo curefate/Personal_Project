@@ -202,6 +202,11 @@ public class Enemy : BattleBase
             return false;
         }
 
+        if (!target.TryGetComponent<BattleBase>(out var battleBase))
+        {
+            return false;
+        }
+
         Vector3 targetPosition = target.transform.position;
         NavMeshHit hit;
         if (NavMesh.SamplePosition(targetPosition, out hit, _agent.stoppingDistance, NavMesh.AllAreas))

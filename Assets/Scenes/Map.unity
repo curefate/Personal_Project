@@ -929,8 +929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnergyManager
   maxEnergy: 100
-  energy: 50
-  increaseEnergy: 0
+  energy: 0
+  increaseEnergy: 1
   increaseInterval: 2
   increaseAmount: 1
 --- !u!1 &1349353898
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8784c3a4ca45464cad2965db9a1d309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextPusher
-  intervalTime: 0.05
+  intervalTime: 0.02
 --- !u!4 &1424219751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4588236553044602469, guid: 730ab075d18544043af46ee2630abada, type: 3}

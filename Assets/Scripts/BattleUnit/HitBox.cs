@@ -15,6 +15,23 @@ public class HitBox : MonoBehaviour
         }
     }
 
+    public void SetOwner(GameObject owner = null)
+    {
+        if (owner != null)
+        {
+            Owner = owner;
+        }
+        else
+        {
+            Owner = Camera.main.transform.root.gameObject;
+        }
+    }
+
+    public GameObject GetOwner()
+    {
+        return Owner;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<BattleBase>(out var target))

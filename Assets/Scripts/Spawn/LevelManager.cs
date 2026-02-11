@@ -4,9 +4,9 @@ using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
-    public float countDownTimer;
-    public bool ifCountdownActive;
     public int readonly_level;
+    public float restTime;
+    public bool isResting;
 
     private EnemySpawner _enemySpawner;
 
@@ -18,13 +18,15 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator Level_1()
     {
+        isResting = true;
+        yield return new WaitForSeconds(restTime);
+        isResting = false;
         readonly_level = 1;
-        yield return new WaitForSeconds(3f);
         _enemySpawner.SpawnEnemy(8, "skeleton");
         yield return new WaitForSeconds(6f);
         _enemySpawner.SpawnEnemy(3, "skeleton");
         yield return new WaitForSeconds(6f);
-        _enemySpawner.SpawnEnemy(3, "skeleton");
+        _enemySpawner.SpawnEnemy(3, "gold_skeleton");
         while (_enemySpawner.ActiveEnemies.Count > 0)
         {
             yield return null;
@@ -34,10 +36,15 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator Level_2()
     {
+        isResting = true;
+        yield return new WaitForSeconds(restTime);
+        isResting = false;
         readonly_level = 2;
+        _enemySpawner.SpawnEnemy(5, "skeleton");
+        _enemySpawner.SpawnEnemy(5, "gold_skeleton");
+        yield return new WaitForSeconds(15f);
         _enemySpawner.SpawnEnemy(10, "skeleton");
-        yield return new WaitForSeconds(10f);
-        _enemySpawner.SpawnEnemy(10, "skeleton");
+        _enemySpawner.SpawnEnemy(5, "gold_skeleton");
         while (_enemySpawner.ActiveEnemies.Count > 0)
         {
             yield return null;
@@ -47,14 +54,18 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator Level_3()
     {
+        isResting = true;
+        yield return new WaitForSeconds(restTime);
+        isResting = false;
         readonly_level = 3;
-        _enemySpawner.SpawnEnemy(15, "skeleton");
-        yield return new WaitForSeconds(5f);
+        _enemySpawner.SpawnEnemy(8, "skeleton");
+        _enemySpawner.SpawnEnemy(7, "gold_skeleton");
+        yield return new WaitForSeconds(10f);
         while (_enemySpawner.ActiveEnemies.Count > 7)
         {
             yield return null;
         }
-        _enemySpawner.SpawnEnemy(10, "skeleton");
+        _enemySpawner.SpawnEnemy(1, "huge_skeleton");
         while (_enemySpawner.ActiveEnemies.Count > 0)
         {
             yield return null;
@@ -72,18 +83,5 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _enemySpawner = FindFirstObjectByType<EnemySpawner>();
-    }
-
-    private void Update()
-    {
-        if (ifCountdownActive)
-        {
-            countDownTimer -= Time.deltaTime;
-            if (countDownTimer <= 0)
-            {
-                countDownTimer = 0;
-                StartLevel();
-            }
-        }
     }
 }
