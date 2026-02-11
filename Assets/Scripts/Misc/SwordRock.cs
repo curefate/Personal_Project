@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 [RequireComponent(typeof(AudioSource))]
@@ -8,6 +9,8 @@ public class SwordRock : MonoBehaviour
     public GameObject excalibur;
     public AudioClip swordRockAudio;
     public AudioClip stoneCrushAudio;
+    public AudioClip cureAudio;
+    public TextPusher textPusher;
 
     private AudioSource _audioSource;
 
@@ -61,6 +64,8 @@ public class SwordRock : MonoBehaviour
             _checkSword = false;
             _audioSource.Stop();
             _audioSource.PlayOneShot(stoneCrushAudio);
+            _audioSource.PlayOneShot(cureAudio);
+            textPusher.PushText("I have restored some of your power...");
 
             excalibur.transform.parent = null;
             var exrb = excalibur.GetComponent<Rigidbody>();
@@ -84,5 +89,10 @@ public class SwordRock : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * 5f);
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    void OnDestroy()
+    {
+        textPusher.PushText("Release the real power of your Sword, dispel the darkness!\n(Activate)");
     }
 }

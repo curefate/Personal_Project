@@ -260,6 +260,8 @@ MonoBehaviour:
   excalibur: {fileID: 4285932084971001735}
   swordRockAudio: {fileID: 8300000, guid: 87c046e49565edb4b964b3d752292a79, type: 3}
   stoneCrushAudio: {fileID: 8300000, guid: ba755659fb4983e4fbea3a7ac3048649, type: 3}
+  cureAudio: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
+  textPusher: {fileID: 0}
 --- !u!1001 &1771807103111873110
 PrefabInstance:
   m_ObjectHideFlags: 0

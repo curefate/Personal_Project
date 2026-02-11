@@ -10,6 +10,7 @@ public class SwingDetection : MonoBehaviour
     private IXRSelectInteractor interactor;
     private XRGrabInteractable grab;
     private HapticImpulsePlayer hapticPlayer;
+    public HapticImpulsePlayer HapticPlayer { get { return hapticPlayer; } }
 
     public float swingThreshold;
     public UnityEvent onSwing;
