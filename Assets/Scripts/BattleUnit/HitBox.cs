@@ -15,16 +15,14 @@ public class HitBox : MonoBehaviour
         }
     }
 
-    public void SetOwner(GameObject owner = null)
+    public void SetOwner(GameObject owner)
     {
-        if (owner != null)
-        {
-            Owner = owner;
-        }
-        else
-        {
-            Owner = Camera.main.transform.root.gameObject;
-        }
+        Owner = owner;
+    }
+
+    public void SetPlayerOwner()
+    {
+        Owner = GameObject.FindWithTag("Player");
     }
 
     public GameObject GetOwner()

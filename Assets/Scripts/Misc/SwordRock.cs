@@ -67,7 +67,7 @@ public class SwordRock : MonoBehaviour
             _audioSource.Stop();
             _audioSource.PlayOneShot(stoneCrushAudio);
             _audioSource.PlayOneShot(cureAudio);
-            textPusher.PushText("I have restored some of your power...");
+            textPusher.PushText("Your energy has been restored...");
             _energyManager.Energy += 100;
 
             excalibur.transform.parent = null;
@@ -77,7 +77,6 @@ public class SwordRock : MonoBehaviour
             exrb.useGravity = true;
             exrb.constraints = RigidbodyConstraints.None;
             excalibur.GetComponent<XRGrabInteractable>().movementType = XRGrabInteractable.MovementType.Instantaneous;
-            Debug.Log("Excalibur has been released.");
 
             Destroy(gameObject, 3f);
             Destroy(transform.parent.gameObject, 3f);
@@ -90,12 +89,12 @@ public class SwordRock : MonoBehaviour
         {
             var target = transform.position + new Vector3(Random.Range(-0.05f, 0.05f), -0.2f, Random.Range(-0.05f, 0.05f));
             transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * 5f);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.07f);
         }
     }
 
     void OnDestroy()
     {
-        textPusher.PushText("Release the real power of your Sword, dispel the darkness!\n(Activate)");
+        textPusher.PushText("Release the real power of the sword.\nDispel the darkness!");
     }
 }

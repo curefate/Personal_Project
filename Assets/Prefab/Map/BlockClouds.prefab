@@ -6949,6 +6949,7 @@ GameObject:
   - component: {fileID: 6623426127327990726}
   - component: {fileID: 6587861329125763654}
   - component: {fileID: 1327689281864217846}
+  - component: {fileID: 7417104587074994234}
   m_Layer: 10
   m_Name: BlockClouds
   m_TagString: Untagged
@@ -7077,6 +7078,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 4, z: 0}
+--- !u!114 &7417104587074994234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6497268076331475722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39e5a557f31e3147b4895092c32465b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlockClouds
+  cloudSpeed: 8
 --- !u!1 &6542354564300843427
 GameObject:
   m_ObjectHideFlags: 0

@@ -147,6 +147,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ActionId: 682022c0-857a-4332-8753-7f8fcdf84d37
+--- !u!114 &141748274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8261516960068137395, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+  m_PrefabInstance: {fileID: 6659932145085222256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb3e77ff50b2ce46b21d671cf141169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
 --- !u!1 &189930875
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,7 +1002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Take your Sword
+  m_text: You are the chosen one..\nTake the sword...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1018,12 +1029,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.3
+  m_fontSize: 0.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0.05
-  m_fontSizeMax: 0.3
+  m_fontSizeMax: 0.15
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1083,7 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8784c3a4ca45464cad2965db9a1d309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextPusher
-  intervalTime: 0.02
+  intervalTime: 0.01
 --- !u!4 &1424219751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4588236553044602469, guid: 730ab075d18544043af46ee2630abada, type: 3}
@@ -1413,9 +1424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846177cfc762f4a459e01218e382f4fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  countDownTimer: 0
-  ifCountdownActive: 0
   readonly_level: 0
+  restTime: 0
+  isResting: 0
 --- !u!20 &1788693637 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 702062621528502708, guid: 730ab075d18544043af46ee2630abada, type: 3}
@@ -2188,8 +2199,64 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3188356778767766115, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188356778767766115, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
       propertyPath: onSwing.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlayOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3666207275571967662}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 141748274}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetPlayerOwner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: HitBox, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975191440485304391, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090414509544156341, guid: 9871068c29f3da9488f2d3fd254db2e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

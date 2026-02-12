@@ -11,5 +11,10 @@ public class BeamHurt : MonoBehaviour
         {
             enemy.TakeDamage(new DamageMessage(hitBox.GetOwner(), damage));
         }
+
+        if (other.layer == LayerMask.NameToLayer("Block") && other.TryGetComponent(out BlockClouds blockClouds))
+        {
+            blockClouds.AllCloudsFly();
+        }
     }
 }

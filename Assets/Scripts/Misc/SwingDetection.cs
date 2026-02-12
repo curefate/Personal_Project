@@ -66,7 +66,10 @@ public class SwingDetection : MonoBehaviour
         {
             isSwinged = true;
             onSwing.Invoke();
-            hapticPlayer?.SendHapticImpulse(0.5f, 0.2f);
+            if (hapticPlayer != null)
+            {
+                hapticPlayer.SendHapticImpulse(0.5f, 0.2f);
+            }
         }
 
         if (speed < swingThreshold && isSwinged)
