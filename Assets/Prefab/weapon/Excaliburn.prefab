@@ -25399,7 +25399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeamHurt
   hitBox: {fileID: 7651744183770067941}
-  damage: 80
+  damage: 150
 --- !u!198 &8153326454116225315
 ParticleSystem:
   m_ObjectHideFlags: 0

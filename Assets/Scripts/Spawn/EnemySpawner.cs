@@ -35,4 +35,15 @@ public class EnemySpawner : MonoBehaviour
         var enemy = Instantiate(enemyPrefab, position, rotation);
         ActiveEnemies.Add(enemy);
     }
+
+    void Update()
+    {
+        for (int i = ActiveEnemies.Count - 1; i >= 0; i--)
+        {
+            if (ActiveEnemies[i] == null)
+            {
+                ActiveEnemies.RemoveAt(i);
+            }
+        }
+    }
 }

@@ -9,7 +9,7 @@ public class Castle : BattleBase
 
     void Start()
     {
-        Health = 1000;
+        Health = 2000;
     }
 
     void Update()
@@ -29,8 +29,9 @@ public class Castle : BattleBase
         if (Health <= 0)
         {
             _isDead = true;
-            GameManager gameManager = FindFirstObjectByType<GameManager>();
-            gameManager.Lose();
+            LevelManager levelManager = FindFirstObjectByType<LevelManager>();
+            levelManager.lose = true;
+            levelManager.StopAllCoroutines();
         }
     }
 }

@@ -942,7 +942,7 @@ MonoBehaviour:
   maxEnergy: 100
   energy: 0
   increaseEnergy: 1
-  increaseInterval: 2
+  increaseInterval: 1
   increaseAmount: 1
 --- !u!1 &1349353898
 GameObject:
@@ -1160,7 +1160,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 0.71110713, g: 0.9622642, b: 0.9563777, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0.25
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1425,8 +1425,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   readonly_level: 0
-  restTime: 0
+  restTime: 10
+  restOfRestTime: 0
   isResting: 0
+  win: 0
+  lose: 0
 --- !u!20 &1788693637 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 702062621528502708, guid: 730ab075d18544043af46ee2630abada, type: 3}
@@ -1562,7 +1565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a935e15f544244ca4ddef9d4f40345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldManager
-  gold: 9999
+  gold: 0
   increaseGold: 0
   increaseInterval: 2
   increaseAmount: 5
@@ -1826,9 +1829,17 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1788693637}
+    - target: {fileID: 192862553867587835, guid: 1827be5771e076c40bb31c179db3ef3c, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 926995418696254859, guid: 1827be5771e076c40bb31c179db3ef3c, type: 3}
       propertyPath: m_Name
       value: LevelStatusUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532527626691168117, guid: 1827be5771e076c40bb31c179db3ef3c, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7645741964869837977, guid: 1827be5771e076c40bb31c179db3ef3c, type: 3}
       propertyPath: m_Pivot.x
@@ -2028,6 +2039,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 548601110707332520, guid: 48b5872ae7e6c894d982965ff5c4fd97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825674264810179244, guid: 48b5872ae7e6c894d982965ff5c4fd97, type: 3}
+      propertyPath: Health
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 1286127755524972594, guid: 48b5872ae7e6c894d982965ff5c4fd97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2071,6 +2090,10 @@ PrefabInstance:
     - target: {fileID: 4755006928343346786, guid: 48b5872ae7e6c894d982965ff5c4fd97, type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636075554183003136, guid: 48b5872ae7e6c894d982965ff5c4fd97, type: 3}
+      propertyPath: MaxHealth
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

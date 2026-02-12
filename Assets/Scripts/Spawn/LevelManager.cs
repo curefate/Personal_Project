@@ -6,18 +6,38 @@ public class LevelManager : MonoBehaviour
 {
     public int readonly_level;
     public float restTime;
+    [HideInInspector]
+    public float restOfRestTime;
     public bool isResting;
+    public bool win;
+    public bool lose;
 
     private EnemySpawner _enemySpawner;
+
+    void Update()
+    {
+        if (isResting)
+        {
+            restOfRestTime -= Time.deltaTime;
+        }
+        else
+        {
+            restOfRestTime = restTime;
+        }
+    }
 
     public void StartLevel()
     {
         StopAllCoroutines();
+        var goldmanager = FindFirstObjectByType<GoldManager>();
+        goldmanager.Gold = 1000;
+        goldmanager.increaseGold = true;
         StartCoroutine(Level_1());
     }
 
     IEnumerator Level_1()
     {
+        Debug.Log("Starting Level 1");
         isResting = true;
         yield return new WaitForSeconds(restTime);
         isResting = false;
@@ -36,6 +56,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator Level_2()
     {
+        Debug.Log("Starting Level 2");
         isResting = true;
         yield return new WaitForSeconds(restTime);
         isResting = false;
@@ -54,6 +75,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator Level_3()
     {
+        Debug.Log("Starting Level 3");
         isResting = true;
         yield return new WaitForSeconds(restTime);
         isResting = false;
@@ -77,6 +99,7 @@ public class LevelManager : MonoBehaviour
     {
         readonly_level = 4;
         Debug.Log("All levels completed!");
+        win = true;
         yield return null;
     }
 

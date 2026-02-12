@@ -53,7 +53,7 @@ public class Enemy : BattleBase
         _audioSource = GetComponent<AudioSource>();
         _audioSource.Play();
         _castle = FindFirstObjectByType<Castle>().gameObject;
-        _targetPriorities[_castle] = 6000;
+        _targetPriorities[_castle] = 4000;
         CurrentTarget = _castle;
         _renderersNeedToFlash = GetComponentsInChildren<SkinnedMeshRenderer>().ToList();
     }
@@ -133,11 +133,17 @@ public class Enemy : BattleBase
 
         if (_targetPriorities.ContainsKey(msg.Source))
         {
-            _targetPriorities[msg.Source] += 3000f;
+            if (msg.Source.TryGetComponent<BattleBase>(out var battleBase))
+            {
+                _targetPriorities[msg.Source] += 3000f;
+            }
         }
         else
         {
-            _targetPriorities[msg.Source] = 3000f;
+            if (msg.Source.TryGetComponent<BattleBase>(out var battleBase))
+            {
+                _targetPriorities[msg.Source] = 3000f;
+            }
         }
 
         StartCoroutine(FlashEffect());
@@ -161,7 +167,7 @@ public class Enemy : BattleBase
 
     private void HandlePriorityTargeting()
     {
-        float highestPriority = 0f;
+        /* float highestPriority = 0f;
         foreach (var target in _targetPriorities.Keys.ToList())
         {
             if (target == null)
@@ -175,9 +181,9 @@ public class Enemy : BattleBase
                 highestPriority = _targetPriorities[target];
                 CurrentTarget = target;
             }
-        }
+        } */
 
-        if (highestPriority == 0f || !CheckTargetValidity(CurrentTarget))
+        /* if (highestPriority == 0f || !CheckTargetValidity(CurrentTarget))
         {
             var nearestTower = towerManager.TowerList
                 .Where(tower => tower != null)
@@ -190,19 +196,37 @@ public class Enemy : BattleBase
                     return;
                 }
             }
+        } */
+
+        GameObject temp_target = null;
+        var rankList = _targetPriorities.OrderByDescending(kv => kv.Value).Select(kv => kv.Key).ToList();
+        foreach (var target in rankList)
+        {
+            if (target == null)
+            {
+                _targetPriorities.Remove(target);
+                continue;
+            }
+            if (CheckTargetValidity(target))
+            {
+                temp_target = target;
+                break;
+            }
         }
 
-        if (CurrentTarget == null) CurrentTarget = _castle;
+        if (temp_target == null)
+        {
+            temp_target = towerManager.TowerList
+                .Where(tower => tower != null)
+                .OrderBy(tower => Vector3.Distance(tower.transform.position, _castle.transform.position))
+                .FirstOrDefault(tower => CheckTargetValidity(tower.gameObject))?.gameObject;
+        }
+        CurrentTarget = temp_target;
     }
 
     private bool CheckTargetValidity(GameObject target)
     {
         if (target == null)
-        {
-            return false;
-        }
-
-        if (!target.TryGetComponent<BattleBase>(out var battleBase))
         {
             return false;
         }
