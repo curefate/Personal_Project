@@ -1426,10 +1426,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   readonly_level: 0
   restTime: 10
+  bgmAudioSource: {fileID: 5091486689567227236}
+  winSound: {fileID: 8300000, guid: 50e610859a75e5e42870183e3e1022e4, type: 3}
+  loseSound: {fileID: 8300000, guid: bef36b50423454847881a74b8f8f9073, type: 3}
+  bgm: {fileID: 8300000, guid: 606910ec401804eb09925f0d57909c04, type: 3}
   restOfRestTime: 0
   isResting: 0
-  win: 0
-  lose: 0
 --- !u!20 &1788693637 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 702062621528502708, guid: 730ab075d18544043af46ee2630abada, type: 3}
@@ -2013,6 +2015,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 730ab075d18544043af46ee2630abada, type: 3}
+--- !u!82 &5091486689567227236 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6430289155257030600, guid: 730ab075d18544043af46ee2630abada, type: 3}
+  m_PrefabInstance: {fileID: 5091486689567227235}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5108135961700558205
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,8 +30,7 @@ public class Castle : BattleBase
         {
             _isDead = true;
             LevelManager levelManager = FindFirstObjectByType<LevelManager>();
-            levelManager.lose = true;
-            levelManager.StopAllCoroutines();
+            levelManager.Lose();
         }
     }
 }

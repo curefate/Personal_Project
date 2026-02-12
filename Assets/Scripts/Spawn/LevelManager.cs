@@ -1,4 +1,5 @@
 using System.Collections;
+using NativeWebSocket;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,13 +7,25 @@ public class LevelManager : MonoBehaviour
 {
     public int readonly_level;
     public float restTime;
+    public AudioSource bgmAudioSource;
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    public AudioClip bgm;
     [HideInInspector]
     public float restOfRestTime;
     public bool isResting;
-    public bool win;
-    public bool lose;
+    public bool win { get; private set; }
+    public bool lose { get; private set; }
 
     private EnemySpawner _enemySpawner;
+
+    private void Start()
+    {
+        _enemySpawner = FindFirstObjectByType<EnemySpawner>();
+
+        bgmAudioSource.clip = bgm;
+        bgmAudioSource.Play();
+    }
 
     void Update()
     {
@@ -32,6 +45,7 @@ public class LevelManager : MonoBehaviour
         var goldmanager = FindFirstObjectByType<GoldManager>();
         goldmanager.Gold = 1000;
         goldmanager.increaseGold = true;
+        bgmAudioSource.pitch = 1.3f;
         StartCoroutine(Level_1());
     }
 
@@ -99,12 +113,25 @@ public class LevelManager : MonoBehaviour
     {
         readonly_level = 4;
         Debug.Log("All levels completed!");
-        win = true;
+        Win();
         yield return null;
     }
 
-    private void Start()
+    public void Win()
     {
-        _enemySpawner = FindFirstObjectByType<EnemySpawner>();
+        win = true;
+        StopAllCoroutines();
+        bgmAudioSource.pitch = 1f;
+        bgmAudioSource.clip = winSound;
+        bgmAudioSource.Play();
+    }
+
+    public void Lose()
+    {
+        lose = true;
+        StopAllCoroutines();
+        bgmAudioSource.pitch = 1f;
+        bgmAudioSource.clip = loseSound;
+        bgmAudioSource.Play();
     }
 }
