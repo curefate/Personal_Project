@@ -34,4 +34,10 @@ public class TextPusher : MonoBehaviour
         }
         isPushing = false;
     }
+
+    public void DestroyFromRoot()
+    {
+        StopAllCoroutines();
+        Destroy(transform.root.gameObject);
+    }
 }

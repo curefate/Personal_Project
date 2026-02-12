@@ -3,6 +3,7 @@ using UnityEngine;
 public class gem : MonoBehaviour
 {
     public int GoldValue = 30;
+    public AudioClip CollectSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,9 +21,10 @@ public class gem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            var player = other.GetComponent<PlayerController>();
-            player.Gold += GoldValue;
-            player.audioSource.PlayOneShot(player.GetMoneySound);
+            var goldmanager = FindFirstObjectByType<GoldManager>();
+            goldmanager.Gold += GoldValue;
+            var mainAudioSource = Camera.main.GetComponent<AudioSource>();
+            mainAudioSource.PlayOneShot(CollectSound);
             Destroy(gameObject);
         }
     }

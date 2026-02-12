@@ -53,7 +53,7 @@ public class Enemy : BattleBase
         _audioSource = GetComponent<AudioSource>();
         _audioSource.Play();
         _castle = FindFirstObjectByType<Castle>().gameObject;
-        _targetPriorities[_castle] = 4000;
+        _targetPriorities[_castle] = 5000;
         CurrentTarget = _castle;
         _renderersNeedToFlash = GetComponentsInChildren<SkinnedMeshRenderer>().ToList();
     }
@@ -135,14 +135,14 @@ public class Enemy : BattleBase
         {
             if (msg.Source.TryGetComponent<BattleBase>(out var battleBase))
             {
-                _targetPriorities[msg.Source] += 3000f;
+                _targetPriorities[msg.Source] += Random.Range(2000f, 3000f);
             }
         }
         else
         {
             if (msg.Source.TryGetComponent<BattleBase>(out var battleBase))
             {
-                _targetPriorities[msg.Source] = 3000f;
+                _targetPriorities[msg.Source] = Random.Range(2000f, 3000f);
             }
         }
 

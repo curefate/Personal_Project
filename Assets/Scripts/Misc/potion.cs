@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class potion : MonoBehaviour
 {
-    public int HealAmount;
+    public int EnergyAmount;
+    public AudioClip CollectSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,13 +21,11 @@ public class potion : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            var player = other.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                player.Heal(HealAmount);
-                player.audioSource.PlayOneShot(player.HealSound);
-                Destroy(gameObject);
-            }
+            var energyManager = FindFirstObjectByType<EnergyManager>();
+            energyManager.Energy += EnergyAmount;
+            var mainAudioSource = Camera.main.GetComponent<AudioSource>();
+            mainAudioSource.PlayOneShot(CollectSound);
+            Destroy(gameObject);
         }
     }
 }
