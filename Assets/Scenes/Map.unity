@@ -238,6 +238,11 @@ MonoBehaviour:
   - {fileID: 1511598074}
   - {fileID: 840251457}
   ActiveEnemies: []
+--- !u!1 &415041256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8526340053672058126, guid: 730ab075d18544043af46ee2630abada, type: 3}
+  m_PrefabInstance: {fileID: 5091486689567227235}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &428084316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1774,6 +1779,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2095578884}
+  - component: {fileID: 2095578885}
   m_Layer: 0
   m_Name: RespawnPoint
   m_TagString: Untagged
@@ -1790,12 +1796,25 @@ Transform:
   m_GameObject: {fileID: 2095578883}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11, y: 6, z: 52}
+  m_LocalPosition: {x: 11, y: 5.8, z: 52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1663940677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2095578885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095578883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4cab3c6a247e0c41b35bcf3773fd94f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPosition
+  player: {fileID: 415041256}
 --- !u!114 &1190259529573828246
 MonoBehaviour:
   m_ObjectHideFlags: 0
